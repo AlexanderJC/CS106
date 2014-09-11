@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+
+/**
+ * @author acaruso
+ *
+ */
+public class CritDmgCalculator {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		/* Prompt the base stat values. */
+		String input = power;
+		String input = ferocity;
+		
+		/* Calculate the damage multiplier given ferocity. */
+		double dmgMultiplier = ((ferocity / 15) + 150) * .01;
+				
+		/* Calculate the damage output given the multiplier. */
+		double attack = power * dmgMultiplier;
+		
+		/* Display the resulting attack value. */
+		System.out.println("Resulting attack value:" + attack + ".");
+		
+	}
+
+}
