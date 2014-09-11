@@ -15,8 +15,8 @@ public class CritDmgCalculator {
 		System.out.println("assuming 100% critical strike chance.");
 		
 		/* Define the base stat values. */
-		double power = 916;
-		double ferocity = 0;
+		double power = 3000;
+		double ferocity = 1500;
 		
 		/* Calculate the damage multiplier given ferocity. */
 		double dmgMultiplier = ((ferocity / 15) + 150) * .01;
