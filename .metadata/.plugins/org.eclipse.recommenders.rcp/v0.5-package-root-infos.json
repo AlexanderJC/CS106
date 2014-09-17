@@ -137,6 +137,19 @@
       "micro": 0,
       "qualifier": ""
     },
+    "jarFileFingerprint": "1826204b0e05aef412b595321866f7d190e0498d",
+    "jarFileModificationDate": "2014-03-17T22:49:49-04:00",
+    "location": "/opt/jdk1.7.0_55/jre/lib/ext/sunjce_provider.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
     "jarFileFingerprint": "7d021d754f0f0b3e50dd1e57bedefd6122077183",
     "jarFileModificationDate": "2014-03-17T23:03:50-04:00",
     "location": "/opt/jdk1.7.0_55/jre/lib/ext/localedata.jar",
@@ -153,19 +166,6 @@
     "jarFileFingerprint": "4c694dd641a828830b5d60f2e44e86531023759f",
     "jarFileModificationDate": "2014-03-17T22:59:23-04:00",
     "location": "/opt/jdk1.7.0_55/jre/lib/resources.jar",
-    "javaRuntime": true
-  },
-  {
-    "symbolicName": "jre",
-    "version": {
-      "major": 1,
-      "minor": 0,
-      "micro": 0,
-      "qualifier": ""
-    },
-    "jarFileFingerprint": "1826204b0e05aef412b595321866f7d190e0498d",
-    "jarFileModificationDate": "2014-03-17T22:49:49-04:00",
-    "location": "/opt/jdk1.7.0_55/jre/lib/ext/sunjce_provider.jar",
     "javaRuntime": true
   },
   {
