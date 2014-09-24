@@ -1,0 +1,68 @@
+/* Import the Scanner. */
+import java.util.Scanner;
+/**
+ * @author Alexander Caruso acaruso@skidmore.edu
+ */
+public class ProfessionQuiz {
+	/**
+	 * @param args
+	 * 
+	 * This program will ask the user several questions, and then evaluate their personality based on their answers.
+	 * It will then tell them which Guild Wars 2 profession they are most similar to.
+	 */
+	public static void main(String[] args) {
+		
+		/* Declaration of variables for each possible result in the quiz: */
+		int warr = 0
+		int gaurd = 0
+		int thief = 0
+		int ranger = 0
+		int engi = 0
+		int necro = 0
+		int mes = 0
+		int ele = 0
+		
+		/* Each question is called and passed each of the variables defined above. */
+		firstQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		secondQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		thirdQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		fourthQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		fifthQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		sixthQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		seventhQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		eighthQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		ninthQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		tenthQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele)
+		
+		/* The user will now be asked a series of questions, detailing a combat sequence,
+		   and then the program will tell them which profession they "fought" most like. */
+		if (warr > guard, thief, ranger, engi, necro, mes, ele) {
+			System.out.println("You fought most like a Warrior.");
+		} else if (guard > warr, thief, ranger, engi, necro, mes, ele) {
+			System.out.println("You fought most like a Guardian.");
+		} else if (thief > warr, guard, ranger, engi, necro, mes, ele) {
+			System.out.println("You fought most like a Thief.");
+		} else if (ranger > warr, guard, thief, engi, necro, mes, ele) {
+			System.out.println("You fought most like a Ranger.");
+		} else if (engi > warr, guard, thief, ranger, necro, mes, ele) {
+			System.out.println("You fought most like an Engineer.");
+		} else if (necro > warr, guard, thief, ranger, engi, mes, ele) {
+			System.out.println("You fought most like a Necromancer.");
+		} else if (mes > warr, guard, thief, ranger, engi, necro, ele) {
+			System.out.println("You fought most like a Mesmer.");
+		} else (ele > warr, guard, thief, ranger, engi, necro, mes) {
+			System.out.println("You fought most like an Elementalist.");
+		}
+		/* At this point, the user has been given their answer, and the quiz is finished. */
+	}
+	public static int firstQuest(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele)
+		
+		/* The first question is asked, and the user's answer is recorded. */
+		Scanner firstAsk = new Scanner(System.in);
+		System.out.println("You're under attack!  Think fast, what is your first reaction? \n 1: Draw my weapons and charge! \n 2: Take stock of the situation. \n 3: Run for it! \n 4: Rally my allies.");
+		int firstAnswer = firstAsk.nextInt();
+		
+		/* Based on the user's answer, various values will be added to their score for various categories. */
+		if (firstAnswer == 1) {
+		
+}
