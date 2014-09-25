@@ -30,6 +30,7 @@ public class ProfessionQuiz {
 		
 		/* The user will now be asked a series of questions, detailing a combat sequence,
 		   and then the program will tell them which profession they "fought" most like. */
+		// TODO: This is for the last method of the program, so move it once that's made!
 		if (warr > guard && warr > thief && warr > ranger && warr > engi && warr > necro && warr > mes && warr > ele) {
 			System.out.println("You fought most like a Warrior.");
 		} else if (guard > warr && guard > thief && guard > ranger && guard > necro && guard > mes && guard > ele) {
@@ -44,12 +45,13 @@ public class ProfessionQuiz {
 			System.out.println("You fought most like a Necromancer.");
 		} else if (mes > warr && mes > guard && mes > thief && mes > ranger && mes > engi && mes > necro && mes > ele) {
 			System.out.println("You fought most like a Mesmer.");
-		} else
+		} else {
 			System.out.println("You fought most like an Elementalist.");
 		}
-		
+
 		/* At this point, the user has been given their answer, and the quiz is finished. */
 		
+	}	
 	public static void firstQuest(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele, Scanner asker) {
 		
 		/* The first question is asked, and the user's answer is recorded. */
@@ -66,32 +68,37 @@ public class ProfessionQuiz {
 		} else if (firstAnswer == 3) {
 			thief++;
 			mes++;
-		} else
+		} else {
 			guard+=2;
 			ele++;
 		}
 	
 		/* Now that the user has answered, the next question method is called and passed the user's adjusted values. */
-		/* void secondQuest(warr, guard, thief, ranger, engi, necro, mes, ele, asker);
+		secondQuest(warr, guard, thief, ranger, engi, necro, mes, ele, asker);
 		
 	}
-	public static int secondQuest(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele, Scanner asker) {
+	public static void secondQuest(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele, Scanner asker) {
 		
 		/* The second question is asked, and the user's answer is recorded. */
-		/* System.out.println("");
+		System.out.println("");
 		int secondAnswer = asker.nextInt();
 		
 		/* Based on the user's answer, categories are incremented. */
-		/* if (secondAnswer == 1) {
+		if (secondAnswer == 1) {
 			
 		} else if (secondAnswer == 2) {
 			
 		} else if (secondAnswer == 3) {
 			
-		} else
+		} else {
 			
 		}
 	
 		/* The next question method is called and passed the user's current values. */
-		/* void thirdQuest(warr, gaurd, thief, ranger, engi, necro, mes, ele, asker); */
-}
+		thirdQuest(warr, guard, thief, ranger, engi, necro, mes, ele, asker);
+		
+	}
+	// TODO: Make the rest of the questions!
+		
+		
+	}
