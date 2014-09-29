@@ -5,14 +5,10 @@ import java.util.Scanner;
  */
 public class ProfessionQuiz {
 	/**
-	 * @param args I think this is something to do with establishing the command-line arguments one can use during a program. Not entirely sure.
+	 * @param args
 	 * 
 	 * This program will ask the user several questions, and then evaluate their personality based on their answers.
 	 * It will then tell them which Guild Wars 2 profession they are most similar to.
-	 * 
-	 * In this first method, the variables for each profession are established, and the Scanner object that will be used for the duration of the program is created.
-	 * That's all this method does before passing on all of that stuff to the "question methods".
-	 * 
 	 */
 	public static void main(String[] args) {
 		
@@ -36,25 +32,6 @@ public class ProfessionQuiz {
 		   and then the program will tell them which profession they "fought" most like. */
 		
 	}	
-	/**
-	 * The following series of eight methods asks the user the questions in the quiz. 
-	 * Each subsequent method is set up identically to this first one, and uses the same variables.
-	 * The user's score for each applicable class is incremented and then passed on to the next question.
-	 * 
-	 * @param warr The user's score for Warrior.
-	 * @param guard Their score for Guardian.
-	 * @param thief Their score for Thief.
-	 * @param ranger Their score for Ranger.
-	 * @param engi Their score for Engineer.
-	 * @param necro Their score for Necromancer.
-	 * @param mes Their score for Mesmer.
-	 * @param ele Their score for Elementalist.
-	 * Java doesn't seem to think that the scholar professions in Guild Wars 2 actually exist. 
-	 * Apparently, Java does NOT believe in offensive magic.
-	 * 
-	 * @param asker The Scanner object, which asks the user the questions.
-	 * 
-	 */
 	public static void firstQuest(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele, Scanner asker) {
 		
 		/* The first question is asked, and the user's answer is recorded. */
@@ -174,16 +151,16 @@ public class ProfessionQuiz {
 		
 		/* Based on the user's answer, categories are incremented. */
 		if (fifthAnswer == 1) {
-			necro+=2;
-			thief+=2;
-			ele+=2;
+			necro++;
+			thief++;
+			ele++;
 			guard++;
 			engi+=2;
 		} else if (fifthAnswer == 2) {
 			warr++;
-			ranger+=2;
+			ranger++;
 			necro++;
-			guard+=3;
+			guard++;
 		} else if (fifthAnswer == 3) {
 			mes+=2;
 			thief++;
@@ -206,8 +183,8 @@ public class ProfessionQuiz {
 		
 		/* Based on the user's answer, categories are incremented. */
 		if (sixthAnswer == 1) {
-			guard+=3;
-			warr+=2;
+			guard+=2;
+			warr++;
 			necro++;
 			engi++;
 		} else if (sixthAnswer == 2) {
@@ -216,12 +193,12 @@ public class ProfessionQuiz {
 			thief+=3;
 			mes++;
 		} else if (sixthAnswer == 3) {
-			thief+=2;
+			thief++;
 			ele+=2;
 			necro++;
 		} else {
 			ranger++;
-			engi+=3;
+			engi+=2;
 		}
 	
 		/* The next question method is called and passed the user's current values. */
@@ -238,21 +215,21 @@ public class ProfessionQuiz {
 		if (seventhAnswer == 1) {
 			warr++;
 			ele+=2;
-			thief+=3;
-			guard+=2;
+			thief+=2;
+			guard++;
 		} else if (seventhAnswer == 2) {
-			engi+=3;
-			mes+=2;
+			engi+=2;
+			mes++;
 			ele++;
 		} else if (seventhAnswer == 3) {
-			necro+=3;
-			ranger+=2;
+			necro+=2;
+			ranger++;
 			thief++;
 		} else {
-			guard+=2;
+			guard++;
 			ele+=2;
 			mes++;
-			necro+=2;
+			necro++;
 		}
 	
 		/* The next question method is called and passed the user's current values. */
@@ -268,45 +245,31 @@ public class ProfessionQuiz {
 		/* Based on the user's answer, categories are incremented. */
 		if (tenthAnswer == 1) {
 			necro++;
-			warr+=2;
-			thief+=3;
+			warr++;
+			thief++;
 			ele++;
-			engi+=2;
+			engi++;
 		} else if (tenthAnswer == 2) {
-			ranger+=3;
-			guard+=3;
+			ranger+=2;
+			guard++;
 			mes++;
 		} else if (tenthAnswer == 3) {
 			warr+=2;
-			guard+=2;
+			guard++;
 			ele++;
-			necro+=3;
+			necro+=2;
 		} else {
 			guard++;
 			ele+=2;
 			engi++;
-			ranger+=2;
+			ranger++;
 		}
 
 		/* The next question method is called and passed the user's current values. */
 		answeringMachine(warr, guard, thief, ranger, engi, necro, mes, ele, asker);
 	
 	}
-	/**
-	 * This final method takes the user's fully-incremented scores and determines which class they have the most points in.
-	 * It also displays their scores for each individual class, so the user can see which classes they were more or less similar to.
-	 * 
-	 * @param warr The user's score for Warrior.
-	 * @param guard Their score for Guardian.
-	 * @param thief Their score for Thief.
-	 * @param ranger Their score for Ranger.
-	 * @param engi Their score for Engineer.
-	 * @param necro Their score for Necromancer.
-	 * @param mes Their score for Mesmer.
-	 * @param ele Their score for Elementalist.
-	 * 
-	 */
-	public static void answeringMachine(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele) {
+	public static void answeringMachine(int warr, int guard, int thief, int ranger, int engi, int necro, int mes, int ele, Scanner asker) {
 		
 		/* The program calculates which profession the user is most like, and tells them. */
 		if (warr > guard && warr > thief && warr > ranger && warr > engi && warr > necro && warr > mes && warr > ele) {
@@ -323,19 +286,10 @@ public class ProfessionQuiz {
 			System.out.println("You fought most like a Necromancer.");
 		} else if (mes > warr && mes > guard && mes > thief && mes > ranger && mes > engi && mes > necro && mes > ele) {
 			System.out.println("You fought most like a Mesmer.");
-		} else if (ele > warr && ele > guard && ele > thief && ele > ranger && ele > engi && ele > necro && ele > mes) {
-			System.out.println("You fought most like an Elementalist.");
 		} else {
-			System.out.println("You fought with versatility and wisdom! Any class suits you.");
+			System.out.println("You fought most like an Elementalist.");
 		}
-		System.out.println("Warrior score: " + warr + ".");
-		System.out.println("Guardian score: " + guard + ".");
-		System.out.println("Thief score: " + thief + ".");
-		System.out.println("Ranger score: " + ranger + ".");
-		System.out.println("Engineer score: " + engi + ".");
-		System.out.println("Necromancer score: " + necro + ".");
-		System.out.println("Mesmer score: " + mes + ".");
-		System.out.println("Elementalist score: " + ele + ".");
+		
 		/* At this point, the user has been given their answer, and the quiz is finished. */
 		
 	}
