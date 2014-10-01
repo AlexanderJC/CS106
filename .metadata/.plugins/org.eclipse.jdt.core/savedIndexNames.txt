@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/students/home/acaruso/CS106/.metadata/.plugins/org.eclipse.jdt.core
-820019804.index
-1669391102.index
-4203328324.index
