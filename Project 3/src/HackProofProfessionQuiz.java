@@ -119,6 +119,19 @@ public class HackProofProfessionQuiz {
 		System.out.println("The enemy is approaching! What will your first attack be? \n 1: I start setting up traps, and slowly retreat, drawing the enemy in. \n 2: I fire every long-ranged weapon I've got! \n 3: I armor up, or cast defensive spells. \n 4: I'm still charging!");
 		int secondAnswer = asker.nextInt();
 		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (secondAnswer <= 0 || secondAnswer > 4) {
+			if (asker.hasNextInt()) {
+				secondAnswer = asker.nextInt();
+				if (secondAnswer <= 0 || secondAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
+		
 		/* Based on the user's answer, categories are incremented. */
 		if (secondAnswer == 1) {
 			engi+=2;
@@ -144,6 +157,19 @@ public class HackProofProfessionQuiz {
 		/* The third question is asked, and the user's answer is recorded. */
 		System.out.println("They are upon you now, these barbarians, and the fight has begun in earnest. How exactly do you bring them down, in the thick of battle? \n 1: My weapon cleaves through their ranks! \n 2: I strike in bursts of aggression or with concentrated magic. \n 3: I fight with balance, using a wide variety of effects. \n 4: I stay mobile, skirmishing and steadily wearing down the enemy.");
 		int thirdAnswer = asker.nextInt();
+		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (thirdAnswer <= 0 || thirdAnswer > 4) {
+			if (asker.hasNextInt()) {
+				thirdAnswer = asker.nextInt();
+				if (thirdAnswer <= 0 || thirdAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
 		
 		/* Based on the user's answer, categories are incremented. */
 		if (thirdAnswer == 1) {
@@ -174,6 +200,19 @@ public class HackProofProfessionQuiz {
 		System.out.println("As the battle rages on, you have killed several of their number. How do you feel? \n 1: I'm only concerned for my allies and myself. \n 2: Their death-screams only fuel the bloodrage in my heart! \n 3: I feel remorse. I want to demoralize them and continue on my way, if I can, instead of killing them all. \n 4: I'm concerned that they'll send reinforcements.");
 		int fourthAnswer = asker.nextInt();
 		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (fourthAnswer <= 0 || fourthAnswer > 4) {
+			if (asker.hasNextInt()) {
+				fourthAnswer = asker.nextInt();
+				if (fourthAnswer <= 0 || fourthAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
+		
 		/* Based on the user's answer, categories are incremented. */
 		if (fourthAnswer == 1) {
 			guard++;
@@ -203,6 +242,19 @@ public class HackProofProfessionQuiz {
 		/* The fifth question is asked, and the user's answer is recorded. */
 		System.out.println("You've thinned their number, and their chieftan strides through the fray to face you. She flashes you a wicked smile. What's going on in your head? \n 1: I'm checking her weapons and armor. \n 2: I'm ready to fight, and I face her, on guard. \n 3: I consider retreat. Open confrontation is risky. \n 4: I watch the others. I can beat one, but not many at once.");
 		int fifthAnswer = asker.nextInt();
+		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (fifthAnswer <= 0 || fifthAnswer > 4) {
+			if (asker.hasNextInt()) {
+				fifthAnswer = asker.nextInt();
+				if (fifthAnswer <= 0 || fifthAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
 		
 		/* Based on the user's answer, categories are incremented. */
 		if (fifthAnswer == 1) {
@@ -236,6 +288,19 @@ public class HackProofProfessionQuiz {
 		System.out.println("The chieftan lashes out with a vicious blow to your side. How do you defend yourself? \n 1: I use protection magic and armor to withstand the attack. \n 2: I parry! \n 3: I dodge out of the way, ready to heal myself if I take further damage. \n 4: I back away, and attack from range.");
 		int sixthAnswer = asker.nextInt();
 		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (sixthAnswer <= 0 || sixthAnswer > 4) {
+			if (asker.hasNextInt()) {
+				sixthAnswer = asker.nextInt();
+				if (sixthAnswer <= 0 || sixthAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
+		
 		/* Based on the user's answer, categories are incremented. */
 		if (sixthAnswer == 1) {
 			guard+=3;
@@ -266,6 +331,19 @@ public class HackProofProfessionQuiz {
 		System.out.println("After her attack, the chieftan is vulnerable. You must choose how to bring her down. \n 1: With a single, mighty blow! \n 2: With a barrage of rapid attacks! \n 3: With a crippling wound or debilitating magic! \n 4: As long as I stay on my feet, she will fall eventually.");
 		int seventhAnswer = asker.nextInt();
 		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (seventhAnswer <= 0 || seventhAnswer > 4) {
+			if (asker.hasNextInt()) {
+				seventhAnswer = asker.nextInt();
+				if (seventhAnswer <= 0 || seventhAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
+		
 		/* Based on the user's answer, categories are incremented. */
 		if (seventhAnswer == 1) {
 			warr++;
@@ -295,20 +373,33 @@ public class HackProofProfessionQuiz {
 	
 		/* The tenth question is asked, and the user's answer is recorded. */
 		System.out.println("She is slain! The remaining barbarians scatter at the sight of their fallen chieftan. What now? \n 1: Time to loot the body! \n 2: Time to check for wounds and recover what resources I can, in case I am ambushed again. \n 3: Time to celebrate! My allies and I start a roaring fire. \n 4: I contemplate the fight. What can I learn?");
-		int tenthAnswer = asker.nextInt();
+		int eighthAnswer = asker.nextInt();
+		
+		/* Check if the user gave valid input, and, if not, ask for input again. */
+		while (eighthAnswer <= 0 || eighthAnswer > 4) {
+			if (asker.hasNextInt()) {
+				eighthAnswer = asker.nextInt();
+				if (eighthAnswer <= 0 || eighthAnswer > 4) {
+					System.out.println("Invalid input; you have entered an invalid integer.");
+				}
+			} else {
+				System.out.println("Invalid input; you have entered a non-integer.");
+				asker.next();
+			}
+		}
 	
 		/* Based on the user's answer, categories are incremented. */
-		if (tenthAnswer == 1) {
+		if (eighthAnswer == 1) {
 			necro++;
 			warr+=2;
 			thief+=3;
 			ele++;
 			engi+=2;
-		} else if (tenthAnswer == 2) {
+		} else if (eighthAnswer == 2) {
 			ranger+=3;
 			guard+=3;
 			mes++;
-		} else if (tenthAnswer == 3) {
+		} else if (eighthAnswer == 3) {
 			warr+=2;
 			guard+=2;
 			ele++;
