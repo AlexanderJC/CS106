@@ -16,12 +16,10 @@ public class BasicFileReader {
 		Scanner input = new Scanner(new File("src/input.txt"));
 		PrintStream output = new PrintStream(new File("src/output.txt"));
 		String currentLine = new String();
-		Scanner inputReader = new Scanner(currentLine);
 		int accountNumber = 0;
 		double checkingTotal = 0.0;
 		double savingsTotal = 0.0;
 		double creditTotal = 0.0;
-		boolean addValue = true;
 		String secondToken = new String();
 		String thirdToken = new String();
 		double fourthToken = 0.0;
@@ -29,6 +27,8 @@ public class BasicFileReader {
 		// Reads a line, and sets it as the current "line".
 		while (input.hasNextLine()) {
 			currentLine = input.nextLine();
+			Scanner inputReader = new Scanner(currentLine);
+			boolean addValue = true;
 
 			// Skipping the first bit, since it's always the date.
 			inputReader.next();
@@ -59,21 +59,25 @@ public class BasicFileReader {
 			if (accountNumber == 1) {
 				if (addValue == false) {
 					checkingTotal -= fourthToken;
-				}
+				} else {
 				checkingTotal += fourthToken;
+				}
 			} else if (accountNumber == 2) {
 				if (addValue == false) {
 					savingsTotal -= fourthToken;
-				}
+				} else {
 				savingsTotal += fourthToken;
+				}
 			} else if (accountNumber == 3) {
 				if (addValue == false) {
 					creditTotal -= fourthToken;
-				}
+				} else {
 				creditTotal += fourthToken;
+				}
 			}
 
 			// This is the tail end of the while loop.
+			inputReader.close();
 		}
 
 		// After adding up all of the account values, prints them to the output file.
@@ -84,7 +88,7 @@ public class BasicFileReader {
 		// Closing the Scanner and PrintStream objects.
 		input.close();
 		output.close();
-		inputReader.close();
+		
 
 	}
 }
