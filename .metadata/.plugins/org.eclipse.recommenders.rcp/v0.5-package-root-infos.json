@@ -20,9 +20,9 @@
       "micro": 0,
       "qualifier": ""
     },
-    "jarFileFingerprint": "2fa5177aedfe3414e234473fd3522e5221609d03",
-    "jarFileModificationDate": "2014-07-25T12:36:11-04:00",
-    "location": "/opt/jdk1.7.0_67/jre/lib/ext/zipfs.jar",
+    "jarFileFingerprint": "1826204b0e05aef412b595321866f7d190e0498d",
+    "jarFileModificationDate": "2014-07-25T12:34:30-04:00",
+    "location": "/opt/jdk1.7.0_67/jre/lib/ext/sunjce_provider.jar",
     "javaRuntime": true
   },
   {
@@ -46,9 +46,9 @@
       "micro": 0,
       "qualifier": ""
     },
-    "jarFileFingerprint": "1826204b0e05aef412b595321866f7d190e0498d",
-    "jarFileModificationDate": "2014-07-25T12:34:30-04:00",
-    "location": "/opt/jdk1.7.0_67/jre/lib/ext/sunjce_provider.jar",
+    "jarFileFingerprint": "2fa5177aedfe3414e234473fd3522e5221609d03",
+    "jarFileModificationDate": "2014-07-25T12:36:11-04:00",
+    "location": "/opt/jdk1.7.0_67/jre/lib/ext/zipfs.jar",
     "javaRuntime": true
   },
   {
@@ -111,19 +111,6 @@
       "micro": 0,
       "qualifier": ""
     },
-    "jarFileFingerprint": "01b9aa16177150f35e7274f4916d76120e7c6538",
-    "jarFileModificationDate": "2014-07-25T12:28:41-04:00",
-    "location": "/opt/jdk1.7.0_67/jre/lib/ext/dnsns.jar",
-    "javaRuntime": true
-  },
-  {
-    "symbolicName": "jre",
-    "version": {
-      "major": 1,
-      "minor": 0,
-      "micro": 0,
-      "qualifier": ""
-    },
     "jarFileFingerprint": "be4124ecceb37230419f0f31ea6e7d50babb4973",
     "jarFileModificationDate": "2014-07-25T12:21:47-04:00",
     "location": "/opt/jdk1.7.0_67/jre/lib/jce.jar",
@@ -137,9 +124,9 @@
       "micro": 0,
       "qualifier": ""
     },
-    "jarFileFingerprint": "e0daf16d3b138666a6b2dfbdf807f269615e5726",
-    "jarFileModificationDate": "2014-07-25T12:43:40-04:00",
-    "location": "/opt/jdk1.7.0_67/jre/lib/jfr.jar",
+    "jarFileFingerprint": "01b9aa16177150f35e7274f4916d76120e7c6538",
+    "jarFileModificationDate": "2014-07-25T12:28:41-04:00",
+    "location": "/opt/jdk1.7.0_67/jre/lib/ext/dnsns.jar",
     "javaRuntime": true
   },
   {
@@ -153,6 +140,19 @@
     "jarFileFingerprint": "c7957be341f0dd043e4e91cc56afc9e0ed254ede",
     "jarFileModificationDate": "2014-07-25T12:51:02-04:00",
     "location": "/opt/jdk1.7.0_67/jre/lib/rt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "e0daf16d3b138666a6b2dfbdf807f269615e5726",
+    "jarFileModificationDate": "2014-07-25T12:43:40-04:00",
+    "location": "/opt/jdk1.7.0_67/jre/lib/jfr.jar",
     "javaRuntime": true
   }
 ]

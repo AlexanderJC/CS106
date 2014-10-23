@@ -3,5 +3,10 @@
     "coordinate": "jre:jre:zip:call:1.0.0",
     "location": "/opt/jdk1.7.0_67/jre/lib/rt.jar",
     "status": "RESOLVED"
+  },
+  "/students/home/acaruso/CS106/Project 5/src": {
+    "location": "/students/home/acaruso/CS106/Project 5/src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/students/home/acaruso/CS106/Project 5/src\u0027. Skipped."
   }
 }
