@@ -98,7 +98,6 @@ public class Character {
 		System.out.println("Your gear is weighted as follows:");
 		System.out.println("Offense: " + ((offense / total) * 100) + "%.");
 		System.out.println("Defense: " + ((defense / total) *100) + "%.");
-		System.out.println(" ");
 		
 	}
 	

@@ -85,7 +85,7 @@ public class Character {
 		
 	}
 	
-	public void balance () {
+	public void playerBalance () {
 		
 		//Accesses the stats array, and adds together all of the player's offensive stats.
 		double offense = stats[0] + stats[1] + stats[2] + stats[6];
@@ -96,13 +96,12 @@ public class Character {
 		//Tell the player how much their build emphasizes offense and defense, respectively.
 		double total = offense + defense;
 		System.out.println("Your gear is weighted as follows:");
-		System.out.println("Offense: " + ((offense / total) * 100) + "%.");
-		System.out.println("Defense: " + ((defense / total) *100) + "%.");
-		System.out.println(" ");
+		System.out.println("Offense: " + (offense / total) + "%.");
+		System.out.println("Defense: " + (defense / total) + "%.");
 		
 	}
 	
-	public void damage () {
+	public void playerDamage () {
 		
 		
 	}

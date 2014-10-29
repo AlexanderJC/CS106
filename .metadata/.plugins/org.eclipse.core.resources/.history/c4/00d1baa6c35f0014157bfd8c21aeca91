@@ -17,9 +17,7 @@ public class BuildFocusCalculator {
 		player.load("src/input.txt");
 		
 		player.recordStats();
-		player.balance();
-		
-		player.damage();
+		player.playerBalance();
 		
 	}
 
