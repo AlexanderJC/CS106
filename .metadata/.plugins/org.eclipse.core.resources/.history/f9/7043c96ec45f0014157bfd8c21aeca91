@@ -13,14 +13,13 @@ public class BuildFocusCalculator {
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		//Create a new character; make an "empty character", and fill it out with the user's stats.
 		Character player = new Character();
 		player.load("src/input.txt");
-		player.recordStats();
 		
-		//Analyze the created character, and tell the user the results.
+		player.recordStats();
 		player.balance();
-		//TODO: player.damage();
+		
+		player.damage();
 		
 	}
 
