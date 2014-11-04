@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+
 /**
  * This object represents a player character in Guild Wars 2. It is an array of Gear objects.
  * @author Alexander Caruso
@@ -12,6 +13,8 @@ public class Character {
 	
 	/**
 	 * Built based on lecture 20 from cs106.kevinfodness.com.
+	 * This method loads a file containing a set of gear into a created Character object.
+	 * In pseudocode, this method "equips" the created "character".
 	 * @param filepath - The input file to draw data from, with which the array gearSet will be filled out.
 	 * @throws FileNotFoundException
 	 */
@@ -36,6 +39,12 @@ public class Character {
 		
 	}
 	
+	/**
+	 * This method counts the number of lines in the input file. It's called by the load method.
+	 * @param file The gear set from the load method.
+	 * @return The number of lines in the file (which is the number of pieces of gear).
+	 * @throws FileNotFoundException
+	 */
 	public int lineCount (File file) throws FileNotFoundException {
 		
 		//Declare the integer that will count the number of lines.
@@ -52,6 +61,9 @@ public class Character {
 		
 	}
 	
+	/**
+	 * This method parses the set of gear from the input file, distilling that information into raw stat boosts.
+	 */
 	public void recordStats () {
 		
 		/*
@@ -82,9 +94,13 @@ public class Character {
 				stats[4] += c.thirdStat;
 			}
 		}
+		//This doesn't represent nearly all the possible stat combinations, but for the purposes of this prototype program, several fairly common combination types are included and used.
 		
 	}
 	
+	/**
+	 * Using the stats array, which contains a record of the created character's various stats from gear, this method tells the user what percentage of those stats are offensive and defensive.
+	 */
 	public void balance () {
 		
 		//Accesses the stats array, and adds together all of the player's offensive stats.
@@ -99,11 +115,6 @@ public class Character {
 		System.out.println("Offense: " + ((offense / total) * 100) + "%.");
 		System.out.println("Defense: " + ((defense / total) *100) + "%.");
 		System.out.println(" ");
-		
-	}
-	
-	public void damage () {
-		
 		
 	}
 	
