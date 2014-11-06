@@ -1,0 +1,33 @@
+import java.util.*;
+import java.lang.Math;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+public class Competition {
+
+	public static void main(String[] args) {
+		
+		int dataNum = 0;
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Number of data sets?");
+		dataNum = input.nextInt();
+		
+		double[] data = new double[dataNum];
+		
+		for (int i = 0; i < dataNum; i++) {
+			System.out.println("Enter input: ");
+			data[i] = input.nextInt();
+		}
+			
+		/* firstAns = questions[0] * .8;
+		double firstRound = 0.00;
+		BigDecimal bda = new BigDecimal(firstAns).setScale(2, RoundingMode.HALF_EVEN);
+		firstRound = bda.doubleValue();
+		String firstString = Double.toString(firstRound);
+		String firstAddString = null;
+		if (!(firstString.contains(".00"))) {
+			firstAddString = firstString + "0"; */
+	}
+		
+}
+

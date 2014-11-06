@@ -1,0 +1,50 @@
+import java.util.*;
+import java.lang.Math;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+public class Competition {
+
+	public static void main(String[] args) {
+		
+		int dataNum = 0;
+		double firstAns = 0.0;
+		double secondAns = 0.0;
+		double thirdAns = 0.0;
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Number of data sets?");
+		dataNum = input.nextInt();
+		
+		double[] questions = new double[dataNum];
+		
+		System.out.println("First problem?");
+		questions[0] = input.nextDouble();
+		
+		System.out.println("Second problem?");
+		questions[1] = input.nextDouble();
+		
+		System.out.println("Third problem?");
+		questions[2] = input.nextDouble();
+		
+		firstAns = questions[0] * .8;
+		double firstRound = 0.0;
+		BigDecimal bda = new BigDecimal(firstAns).setScale(2, RoundingMode.HALF_EVEN);
+		firstRound = bda.doubleValue();
+		
+		secondAns = questions[1] * .8;
+		double secondRound = 0.00;
+		BigDecimal bdb = new BigDecimal(secondAns).setScale(2, RoundingMode.HALF_EVEN);
+		secondRound = bdb.doubleValue();
+		
+		thirdAns = questions[2] * .8;
+		double thirdRound = 0.0;
+		BigDecimal bdc = new BigDecimal(thirdAns).setScale(2, RoundingMode.HALF_EVEN);
+		thirdRound = bdc.doubleValue();
+		
+		System.out.println("$" + firstRound);
+		System.out.println("$" + secondRound);
+		System.out.println("$" + thirdRound);
+		
+	}
+
+}
