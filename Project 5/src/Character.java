@@ -93,6 +93,11 @@ public class Character {
 				stats[2] += c.secondStat;
 				stats[4] += c.thirdStat;
 			}
+			if (c.type.equals("Assassin")) {
+				stats[1] += c.firstStat;
+				stats[0] += c.secondStat;
+				stats[2] += c.thirdStat;
+			}
 		}
 		//This doesn't represent nearly all the possible stat combinations, but for the purposes of this prototype program, several fairly common combination types are included and used.
 		
