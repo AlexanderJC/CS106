@@ -14,6 +14,6 @@ public class Enemy extends Entity {
 	}
 	
 	public void valueReport () {
-		super.valueReport();
+		
 	}
 }

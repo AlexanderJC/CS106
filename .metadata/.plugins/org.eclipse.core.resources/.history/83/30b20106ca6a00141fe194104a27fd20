@@ -31,11 +31,4 @@ public class Entity {
 		
 	}
 	
-	public void valueReport () {
-		
-		//Send the user this entity's statistical values.
-		System.out.println("Current statistical values for " + name + ": \n" + "Strength: " + strength + ", Speed: " + speed + ", Wit: " + wit + ", Will: " + will + ". \n");
-		
-	}
-	
 }

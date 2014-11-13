@@ -13,7 +13,10 @@ public class Enemy extends Entity {
 		
 	}
 	
-	public void valueReport () {
-		super.valueReport();
+	public void statChecker () {
+		
+		//Send the user this entity's statistical values.
+		System.out.println("Current statistics for " + name + ": \n" + "Strength: " + strength + ", Speed: " + speed + ", Wit: " + wit + ", Will: " + will + ". \n");
+		
 	}
 }

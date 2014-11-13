@@ -8,5 +8,10 @@
     "location": "/students/home/acaruso/CS106/Project 5/src",
     "status": "UNRESOLVED",
     "error": "No class path info available for \u0027/students/home/acaruso/CS106/Project 5/src\u0027. Skipped."
+  },
+  "/students/home/acaruso/CS106/DungeonMaster/src": {
+    "location": "/students/home/acaruso/CS106/DungeonMaster/src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/students/home/acaruso/CS106/DungeonMaster/src\u0027. Skipped."
   }
 }
