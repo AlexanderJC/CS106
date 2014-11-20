@@ -1,0 +1,28 @@
+/**
+ * @author acaruso
+ */
+public class HelloWorld {
+	/**
+	 * @param args 
+	 */
+	public static void main(String[] args) {
+		
+		//Print returned total of values:
+		System.out.println("Sum of numbers in range: " + summer(1, 0, 10) + ".");
+		
+	}
+	
+	public static int summer (int current, int total, int max) {
+
+		//Do the other thing:
+		if (current >= max) {
+			total += current;
+			current++;
+			summer(current, total, max);
+		}
+		
+		//Return the total:
+		return total;
+		
+	}
+}

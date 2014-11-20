@@ -1,0 +1,28 @@
+import java.util.*;
+import java.io.*;
+/**
+ * @author acaruso
+ *
+ */
+public class ArrayTrainer {
+
+	
+	/**
+	 * @param args
+	 * @throws FileNotFoundException 
+	 */
+	public static void main(String[] args) {
+		printer(1);
+	}
+	
+	public static void printer (int num) {
+		
+		//Do the thing:
+		if (num < 11) {
+		System.out.println(num);
+		num++;
+		printer(num);
+		}
+		
+	}
+}
