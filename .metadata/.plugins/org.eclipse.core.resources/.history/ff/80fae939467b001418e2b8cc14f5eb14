@@ -33,7 +33,6 @@ public class ArrayTrainer {
 		myQueue.add("Second");
 		myQueue.add("Third");
 		myQueue.add("Fourth");
-		myQueue.add("Fifth");
 		while (!myQueue.isEmpty()) {
 			System.out.println(myQueue.peek());
 			myStack.push(myQueue.remove());
