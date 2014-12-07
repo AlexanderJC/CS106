@@ -55,7 +55,8 @@ public class Enemy {
 		boolean gotIt = false;
 		
 		//Find the information on the type of enemy the user wants.
-		Scanner mobFind = new Scanner(new File("C:/Users/Xander/Documents/GitHub/CS106/DungeonMaster/src/input.txt"));
+		File file = new File("C:/Users/Xander/Documents/GitHub/CS106/DungeonMaster/src/input.txt");
+		Scanner mobFind = new Scanner(file);
 		while (mobFind.hasNext() && !gotIt) {
 			if (mobFind.next().equals(mobName)) {
 				//This is what the user was looking for; bind the information to this object.

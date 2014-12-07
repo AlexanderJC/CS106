@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+
 /**
  * @author Alexander Caruso <acaruso@skidmore.edu>
  * This program is an NPC combat simulator for tabletop roleplaying games, specifically for my D&D remake, Null.
