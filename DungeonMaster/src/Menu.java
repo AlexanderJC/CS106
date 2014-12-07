@@ -1,32 +1,49 @@
+import java.io.FileNotFoundException;
 import java.util.*;
 /**
  * This class is the Main Menu of the program.
  */
 public class Menu {
 	
+	//Initialize an ArrayList to store all enemies created.
+	public ArrayList<Enemy> entities = new ArrayList<Enemy>();
+	
 	/**
 	 * This method represents the menu itself.
 	 * It's an indefinite do-while loop that allows the user to move to other parts of the program.
 	 * It also allows the user to quit.
+	 * @throws FileNotFoundException 
 	 */
-	public void menuLoop () {
+	public void menuLoop () throws FileNotFoundException {
 		
 		//Establish the variable that will keep track of the user's choice. Also establish a Scanner to read the user's choice.
 		int choice = 0;
 		Scanner choicer = new Scanner(System.in);
 		System.out.println("Welcome to the GoblinKing enemy-management system.");
 		
+		//Launch the Creator and Combat menus.
+		Creator creator = new Creator();
+		Combat combat = new Combat();
+		
 		//Launch the "menu" by enclosing the user in a do-while loop.
 		do {
-			System.out.println("Choose an action: \n 1: Create player characters. \n 2: Create enemies. \n 3: Quit.");
+			System.out.println("Choose an action: \n 1: Create enemies. \n 2: Engage combat. \n 3: Query a list of recorded enemies. \n 4: Quit.");
 			choice = choicer.nextInt();
 			if (choice == 1) {
-				//TODO: go to the player character creator.
+				creator.creatorLoop(entities);
 			}
 			if (choice == 2) {
-				//TODO: go to the enemy creator.
+				combat.combatLoop(entities);
 			}
-		} while (choice != 3);
+			if (choice == 3) {
+				System.out.println("Current recorded enemies: \n----------");
+				for (Enemy e : entities) {
+					e.valueReport();
+					System.out.println("----------");
+				}
+			}
+		} while (choice != 4);
+		choicer.close();
 		
 	}
 

@@ -1,10 +1,12 @@
 import java.util.*;
+import java.io.*;
 /**
- * This is a
+ * This is a class that represents a single enemy in the game world. It can load enemies from a source file, create custom enemies, and report their stats.
  */
 public class Enemy {
 	
 	//Create the game's four statistical values, along with the entity's armor class and level scaler.
+	//Also create a boolean flag to mark if the given enemy was level-scaled or not.
 	private String name;
 	private int strength;
 	private int speed;
@@ -44,13 +46,18 @@ public class Enemy {
 	/**
 	 * Constructor for enemies pulled from the input file, generally standard versions of a common entity.
 	 * @param mobName		The name of the enemy you're looking for; whatever you want to make.
-	 * @param scaledLevel	The level you want this instance of the enemy to be (which must be equal to or higher than its level scale).
+	 * @param finalLevel	The level you want this instance of the enemy to be (which must be equal to or higher than its level scale).
+	 * @throws FileNotFoundException 
 	 */
-	public Enemy (String mobName, int finalLevel) {
+	public Enemy (String mobName, int finalLevel) throws FileNotFoundException {
+		
+		//Test boolean flag.
+		boolean gotIt = false;
 		
 		//Find the information on the type of enemy the user wants.
-		Scanner mobFind = new Scanner("src/input.txt");
-		while (mobFind.hasNext()) {
+		File file = new File("C:/Users/Xander/Documents/GitHub/CS106/DungeonMaster/src/input.txt");
+		Scanner mobFind = new Scanner(file);
+		while (mobFind.hasNext() && !gotIt) {
 			if (mobFind.next().equals(mobName)) {
 				//This is what the user was looking for; bind the information to this object.
 				this.name = mobName;
@@ -60,6 +67,7 @@ public class Enemy {
 				this.will = mobFind.nextInt();
 				this.armorClass = mobFind.nextInt();
 				this.scaleLevel = mobFind.nextInt();
+				gotIt = true;
 			} else {
 				//Not what the user was looking for; skip six tokens to get to the next name.
 				mobFind.nextInt();
@@ -76,6 +84,7 @@ public class Enemy {
 		int levelDiff = 0;
 		if (finalLevel > scaleLevel) {
 			//In this case, the desired level is higher than the level scale, so the enemy's stats need to be scaled up.
+			//In this game, you get four stat points per level, so this code adds one to each of the four stats, to approximate leveling up.
 			levelDiff = finalLevel - scaleLevel;
 			for (int i = 0; i < levelDiff; i++) {
 				this.strength++;
