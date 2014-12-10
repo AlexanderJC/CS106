@@ -9,7 +9,7 @@ public class Combat {
 	 * 
 	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
 	 */
-	public int combatLoop (ArrayList<Enemy> entities) {
-		return 1;
+	public int combatLoop (ArrayList<Horde> entities) {
+		return 9;
 	}
 }

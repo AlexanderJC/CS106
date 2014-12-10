@@ -4,7 +4,6 @@ INDEX VERSION 1.127+C:\Users\Xander\Documents\GitHub\CS106\.metadata\.plugins\or
 3891760607.index
 2187451563.index
 167374067.index
-1943063198.index
 3768207814.index
 858238573.index
 2130631781.index

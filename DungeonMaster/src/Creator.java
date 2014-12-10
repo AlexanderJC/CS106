@@ -11,7 +11,7 @@ public class Creator {
 	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
 	 * @throws FileNotFoundException 
 	 */
-	public int creatorLoop (ArrayList<Enemy> entities) throws FileNotFoundException {
+	public int creatorLoop (ArrayList<Horde> entities) throws FileNotFoundException {
 		
 		//Let the user know that they're in the creation menu now, and launch a Scanner so they can navigate.
 		System.out.println("Entered Creator. \n Choose an action: \n 1: Initialize an enemy from the archives. \n 2: Initialize a custom enemy. \n 3: Go back.");
@@ -21,23 +21,27 @@ public class Creator {
 		//Start the loop.
 		if (selection == 1) {
 			System.out.println("Enter the name and desired level of the enemy you wish to create: ");
-			entities.add(new Enemy(selector.next(), selector.nextInt()));
+			entities.add(new Horde(selector.next(), selector.nextInt()));
 			System.out.println("Created.");
 			selector.close();
-			return 1;
+			return 9;
 			
 		} else if (selection == 2) {
 			System.out.println("You have chosen to create a custom enemy. \n Enter the desired name: ");
 			String desiredName = selector.next();
 			System.out.println("Enter Strength, Speed, Wit, Will, Armor Class, and Level: ");
-			entities.add(new Enemy(desiredName, selector.nextInt(), selector.nextInt(), selector.nextInt(), selector.nextInt(), selector.nextInt(), selector.nextInt()));
+			entities.add(new Horde(desiredName, selector.nextInt(), selector.nextInt(), selector.nextInt(), selector.nextInt(), selector.nextInt(), selector.nextInt()));
 			System.out.println("Created.");
 			selector.close();
-			return 1;
+			return 9;
+			
+		} else if (selection == 3) {
+			System.out.println("You have chosen to load a group of enemies into the program. \n Designate horde sizes for...");
+			//TODO: Create this functionality.
 			
 		} else {
 			selector.close();
-			return 1;
+			return 9;
 		}
 	}
 }

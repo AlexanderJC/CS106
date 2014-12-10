@@ -6,7 +6,7 @@ import java.util.*;
 public class Menu {
 	
 	//Initialize an ArrayList to store all enemies created.
-	public ArrayList<Enemy> entities = new ArrayList<Enemy>();
+	public ArrayList<Horde> entities = new ArrayList<Horde>();
 	
 	/**
 	 * This method represents the menu itself.
@@ -18,7 +18,6 @@ public class Menu {
 		
 		//Establish the variable that will keep track of the user's choice. Also establish a Scanner to read the user's choice.
 		int choice = 0;
-		Scanner choicer = new Scanner(System.in);
 		System.out.println("Welcome to the GoblinKing enemy-management system.");
 		
 		//Launch the Creator and Combat menus.
@@ -28,22 +27,26 @@ public class Menu {
 		//Launch the "menu" by enclosing the user in a do-while loop.
 		do {
 			System.out.println("Choose an action: \n 1: Create enemies. \n 2: Engage combat. \n 3: Query a list of recorded enemies. \n 4: Quit.");
+			choice = 0;
+			Scanner choicer = new Scanner(System.in);
 			choice = choicer.nextInt();
 			if (choice == 1) {
+				choicer.close();
 				creator.creatorLoop(entities);
 			}
 			if (choice == 2) {
+				choicer.close();
 				combat.combatLoop(entities);
 			}
 			if (choice == 3) {
+				choicer.close();
 				System.out.println("Current recorded enemies: \n----------");
-				for (Enemy e : entities) {
+				for (Horde e : entities) {
 					e.valueReport();
 					System.out.println("----------");
 				}
 			}
 		} while (choice != 4);
-		choicer.close();
 		
 	}
 
