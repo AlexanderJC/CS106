@@ -45,6 +45,7 @@ public class Combat {
 		//Allow the user to add hordes, setting their size and adding them to 
 		do {
 			System.out.println("Choose an action: \n 1 - Add a horde. \n 2 - Finish adding hordes.");
+			added = false;
 			hordeAction = 0;
 			hordeAction = console.nextInt();
 			if (hordeAction == 1) {
