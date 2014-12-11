@@ -18,11 +18,9 @@ public class Horde {
 	private int finalLevel;
 	private int levelDiff;
 	private int level;
-	private boolean upped = false;
-	//Create variables for the size of the horde (in individuals) and the horde's Attack Interference value.
-	//These values are dealt with in the Combat class.
 	private int size;
 	private int AI;
+	private boolean upped = false;
 	
 	/**
 	 * Constructor for custom enemy hordes that don't exist already. 
@@ -120,58 +118,6 @@ public class Horde {
 		}
 		System.out.println("Strength: " + strength + ", Speed: " + speed + ", Wit: " + wit + ", Will: " + will + ".");
 		
-	}
-	
-	/**
-	 * Getter for the name of the enemy type, used when creating hordes for Combat.
-	 */
-	public String getName () {
-		return this.name;
-	}
-	
-	/**
-	 * Getter for size.
-	 */
-	public int getSize () {
-		return this.size;
-	}
-	
-	/**
-	 * Setter for the size of the horde.
-	 * @param newSize	The desired new size for the horde.
-	 */
-	public void setSize (int newSize) {
-		this.size = newSize;
-	}
-	
-	/**
-	 * Getter for Attack Interference index.
-	 */
-	public int getAI () {
-		return this.AI;
-	}
-	
-	/**
-	 * Setter for the Attack Interference index of the horde.
-	 * @param newAI	The desired new Attack Interference index.
-	 */
-	public void setAI (int newAI) {
-		this.AI = newAI;
-	}
-	
-	/**
-	 * Getter for health.
-	 */
-	public int getHealth () {
-		return this.health;
-	}
-	
-	/**
-	 * Sort of a setter for health; used to damage the horde.
-	 * @param damage	The amount of damage to deal to all members of the horde.
-	 */
-	public void dealDamage (int damage) {
-		this.health -= damage;
 	}
 	
 }

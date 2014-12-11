@@ -6,18 +6,18 @@ import java.util.*;
  * Hordes added in this way are added to the "entities" array, created in the main method.
  */
 public class Creator {
-	
+
 	/**
 	 * @param console	The Scanner, created in the main Menu.
 	 * @param entities	The ArrayList that contains all loaded hordes.
 	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
 	 * @throws FileNotFoundException
 	 */
-	public int creatorLoop(Scanner console, HashSet<Horde> entities) throws FileNotFoundException {
+	public int creatorLoop(Scanner console, ArrayList<Horde> entities) throws FileNotFoundException {
 
 		// Let the user know that they're in the creation menu now, and launch a
 		// Scanner so they can navigate.
-		System.out.println("Entered Creator. \n Choose an action: \n 1 - Initialize an enemy type from the archives. \n 2 - Initialize a custom enemy type. \n 3 - Initialize a group of enemy types from a load file. \n 4 - Go back.");
+		System.out.println("Entered Creator. \n Choose an action: \n 1: Initialize an enemy type from the archives. \n 2: Initialize a custom enemy type. \n 3: Initialize a group of enemy types from a load file. \n 4: Go back.");
 		int selection = console.nextInt();
 
 		// Start the loop.
@@ -51,23 +51,15 @@ public class Creator {
 	 * @param entities	The ArrayList that contains all loaded hordes.
 	 * @throws FileNotFoundException 
 	 */
-	public static void massHordes (Scanner console, HashSet<Horde> entities) throws FileNotFoundException {
+	public static void massHordes (Scanner console, ArrayList<Horde> entities) throws FileNotFoundException {
 		
 		System.out.println("You have chosen to load a group of enemies into the program. \n Enter the filename to load from: ");
 		//Create a new Scanner to read the chosen file.
-		String fileName = "src/" + console.next() + ".txt";
-		Scanner massFind = new Scanner(new File(fileName));
-		
+		String fileName = console.nextLine();
+		Scanner massFind = new Scanner(new File("src/" + fileName));
 		//Create a Horde object out of every line in the file, and add them all to the entities array.
-		while (massFind.hasNext()) {
-			String tempName = massFind.next();
-			int tempStr = massFind.nextInt();
-			int tempSpe = massFind.nextInt();
-			int tempWit = massFind.nextInt();
-			int tempWill = massFind.nextInt();
-			massFind.nextInt();
-			int tempLVL = massFind.nextInt();
-			entities.add(new Horde(tempName, tempStr, tempSpe, tempWit, tempWill, tempLVL));
+		while (massFind.hasNextLine()) {
+			entities.add(new Horde(massFind.next(), massFind.nextInt(), massFind.nextInt(), massFind.nextInt(), massFind.nextInt(), massFind.nextInt()));
 		}
 		massFind.close();
 		System.out.println("Loaded.");

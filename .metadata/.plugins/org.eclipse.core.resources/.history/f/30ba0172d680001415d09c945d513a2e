@@ -5,8 +5,8 @@ import java.util.*;
  */
 public class Menu {
 	
-	//Initialize a HashSet to store all types of hordes recorded for use in a session.
-	public HashSet<Horde> entities = new HashSet<Horde>();
+	//Initialize an ArrayList to store all hordes created.
+	public ArrayList<Horde> entities = new ArrayList<Horde>();
 	
 	/**
 	 * This method represents the menu itself.
@@ -27,7 +27,7 @@ public class Menu {
 		//Launch the "menu" by enclosing the user in a do-while loop.
 		Scanner console = new Scanner(System.in);
 		do {
-			System.out.println("Choose an action: \n 1 - Create hordes. \n 2 - Engage combat. \n 3 - Query a list of recorded hordes. \n 4 - Clear all recorded hordes. \n 5 - Quit.");
+			System.out.println("Choose an action: \n 1 - Create hordes. \n 2 - Engage combat. \n 3 - Query a list of recorded hordes. \n 4 - Quit.");
 			choice = 0;
 			choice = console.nextInt();
 			if (choice == 1) {
@@ -43,14 +43,7 @@ public class Menu {
 					System.out.println("----------");
 				}
 			}
-			if (choice ==4) {
-				entities.clear();
-				System.out.println("Record cleared.");
-			}
-		} while (choice != 5);
-		
-		//Quit.
-		System.out.println("~GoblinKing Enemy-Horde-Management System~");
+		} while (choice != 4);
 		console.close();
 		
 	}

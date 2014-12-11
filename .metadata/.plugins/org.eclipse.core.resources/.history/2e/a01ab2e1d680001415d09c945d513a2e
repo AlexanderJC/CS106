@@ -48,9 +48,6 @@ public class Menu {
 				System.out.println("Record cleared.");
 			}
 		} while (choice != 5);
-		
-		//Quit.
-		System.out.println("~GoblinKing Enemy-Horde-Management System~");
 		console.close();
 		
 	}

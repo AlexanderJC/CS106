@@ -1,0 +1,48 @@
+import java.util.*;
+/**
+ * This class is the Combat menu. It represents an instance of combat within the game.
+ * It rolls initiative, keeps track of health, and allows for the addition and subtraction of enemies.
+ */
+public class Combat {
+
+	/**
+	 * 
+	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
+	 */
+	public int combatLoop (Scanner console, ArrayList<Horde> entities) {
+		
+		//Establish variables.
+		int players;
+		
+		//Ask the user to indicate the number of players involved in this combat.
+		System.out.println("Entered Combat. \n Enter number of player characters in combat: ");
+		players = console.nextInt();
+		
+		//Show the user what types of hordes they can put in this combat.
+		System.out.println("Current recorded hordes: \n----------");
+		for (Horde e : entities) {
+			e.valueReport();
+			System.out.println("----------");
+		}
+		
+		//Launch the horde-adding menu.
+		
+		
+		
+		
+		
+		
+		return 9;
+	}
+	
+	public void hordeAdd (Scanner console, ArrayList<Horde> entities) {
+		
+		do {
+			System.out.println("Add one or more hordes to this combat. \n Choose an action: \n 1 - Add a horde. \n 2 - Finish adding hordes.");
+			selection = 0;
+			
+			} while (selection != 2);
+		
+	}
+	
+}

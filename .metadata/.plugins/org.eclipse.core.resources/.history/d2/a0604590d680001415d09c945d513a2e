@@ -30,9 +30,13 @@ public class Combat {
 		}
 		
 		//Launch the horde-adding menu.
-		hordeAdd(console, entities);
-		return 9;
 		
+		
+		
+		
+		
+		
+		return 9;
 	}
 	
 	public void hordeAdd (Scanner console, HashSet<Horde> entities) {
@@ -66,7 +70,7 @@ public class Combat {
 				if (added) {
 					System.out.println("Horde added to combat.");
 				} else {
-					System.out.println("The desired horde type is not specified. Choose another type.");
+					System.out,println("The desired horde type is not specified. Choose another type.");
 				}
 			}
 		} while (hordeAction != 2);

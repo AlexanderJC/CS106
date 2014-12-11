@@ -13,7 +13,7 @@ public class Creator {
 	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
 	 * @throws FileNotFoundException
 	 */
-	public int creatorLoop(Scanner console, HashSet<Horde> entities) throws FileNotFoundException {
+	public int creatorLoop(Scanner console, ArrayList<Horde> entities) throws FileNotFoundException {
 
 		// Let the user know that they're in the creation menu now, and launch a
 		// Scanner so they can navigate.
@@ -51,23 +51,15 @@ public class Creator {
 	 * @param entities	The ArrayList that contains all loaded hordes.
 	 * @throws FileNotFoundException 
 	 */
-	public static void massHordes (Scanner console, HashSet<Horde> entities) throws FileNotFoundException {
+	public static void massHordes (Scanner console, ArrayList<Horde> entities) throws FileNotFoundException {
 		
 		System.out.println("You have chosen to load a group of enemies into the program. \n Enter the filename to load from: ");
 		//Create a new Scanner to read the chosen file.
 		String fileName = "src/" + console.next() + ".txt";
 		Scanner massFind = new Scanner(new File(fileName));
-		
 		//Create a Horde object out of every line in the file, and add them all to the entities array.
 		while (massFind.hasNext()) {
-			String tempName = massFind.next();
-			int tempStr = massFind.nextInt();
-			int tempSpe = massFind.nextInt();
-			int tempWit = massFind.nextInt();
-			int tempWill = massFind.nextInt();
-			massFind.nextInt();
-			int tempLVL = massFind.nextInt();
-			entities.add(new Horde(tempName, tempStr, tempSpe, tempWit, tempWill, tempLVL));
+			entities.add(new Horde(massFind.next(), massFind.nextInt(), massFind.nextInt(), massFind.nextInt(), massFind.nextInt(), massFind.nextInt()));
 		}
 		massFind.close();
 		System.out.println("Loaded.");

@@ -30,9 +30,13 @@ public class Combat {
 		}
 		
 		//Launch the horde-adding menu.
-		hordeAdd(console, entities);
-		return 9;
 		
+		
+		
+		
+		
+		
+		return 9;
 	}
 	
 	public void hordeAdd (Scanner console, HashSet<Horde> entities) {
