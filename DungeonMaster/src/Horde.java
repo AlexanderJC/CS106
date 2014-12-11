@@ -15,19 +15,23 @@ public class Horde {
 	private int will;
 	private int health;
 	private int scaleLevel;
+	private int finalLevel;
+	private int levelDiff;
 	private int level;
 	private int size;
+	private int AI;
 	private boolean upped = false;
 	
 	/**
-	 * Constructor for custom enemy hordes that don't exist already.
+	 * Constructor for custom enemy hordes that don't exist already. 
+	 * It's also used by the massLoad method of the Creator menu.
 	 * @param initName
 	 * @param initStrength
 	 * @param initSpeed
 	 * @param initWit
 	 * @param initWill
 	 * @param initScale
-	 * The above parameters parallel the variables defined above, and represent the statistics of the enemy.
+	 * The above parameters parallel the variables defined above, and represent the statistics of the enemy type.
 	 * Since this Constructor is for creating custom enemies, should the need arise, it asks for every possible parameter.
 	 */
 	public Horde (String initName, int initStrength, int initSpeed, int initWit, int initWill, int initScale) {
@@ -41,6 +45,7 @@ public class Horde {
 		this.health = (this.will * 6);
 		this.scaleLevel = initScale;
 		this.level = initScale;
+		this.size = 0;
 		
 	}
 	
@@ -50,13 +55,14 @@ public class Horde {
 	 * @param finalLevel	The level you want this instance of the enemy to be (which must be equal to or higher than its level scale).
 	 * @throws FileNotFoundException 
 	 */
-	public Horde (String mobName, int finalLevel) throws FileNotFoundException {
+	public Horde (String mobName, int userLevel) throws FileNotFoundException {
 		
 		//Boolean flag to mark when the correct data has been found.
 		boolean gotIt = false;
+		this.finalLevel = userLevel;
 		
 		//Find the information on the type of enemy the user wants.
-		Scanner mobFind = new Scanner(new File("C:/Users/Xander/Documents/GitHub/CS106/DungeonMaster/src/input.txt"));
+		Scanner mobFind = new Scanner(new File("src/input.txt"));
 		while (mobFind.hasNext() && !gotIt) {
 			if (mobFind.next().equals(mobName)) {
 				//This is what the user was looking for; bind the information to this object.
@@ -67,11 +73,10 @@ public class Horde {
 				this.will = mobFind.nextInt();
 				mobFind.nextInt();
 				this.scaleLevel = mobFind.nextInt();
-				mobFind.nextInt();
 				gotIt = true;
+				this.health = (will * 6);
 			} else {
 				//Not what the user was looking for; skip six tokens to get to the next name.
-				mobFind.nextInt();
 				mobFind.nextInt();
 				mobFind.nextInt();
 				mobFind.nextInt();
@@ -82,12 +87,11 @@ public class Horde {
 		}
 		mobFind.close();
 		
-		//Scale the enemy up to the desired level, if applicable.
-		int levelDiff = 0;
+		//Scale the enemy type up to the desired level, if applicable.
 		if (finalLevel > scaleLevel) {
 			//In this case, the desired level is higher than the level scale, so the enemy's stats need to be scaled up.
 			//In this game, you get four stat points per level, so this code adds one to each of the four stats, to approximate leveling up.
-			levelDiff = finalLevel - scaleLevel;
+			this.levelDiff = finalLevel - scaleLevel;
 			for (int i = 0; i < levelDiff; i++) {
 				this.strength++;
 				this.speed++;
@@ -95,6 +99,7 @@ public class Horde {
 				this.will++;
 				this.level = finalLevel;
 				this.upped = true;
+				this.health = (will * 6);
 			}
 		}
 	}
@@ -107,12 +112,12 @@ public class Horde {
 		//Send the user this entity's statistical values, detecting if the enemy's level was scaled.
 		System.out.println("Stat values for " + name + ": ");
 		if (upped) {
-			System.out.println("Level (scaled from" + scaleLevel + "): " + level + ".");
+			System.out.println("Level (scaled from: " + scaleLevel + "): " + level + ".");
 		} else {
 			System.out.println("Level: " + level + ".");
 		}
 		System.out.println("Strength: " + strength + ", Speed: " + speed + ", Wit: " + wit + ", Will: " + will + ".");
-		System.out.println("Armor Class: " + armorClass + ".");
 		
 	}
+	
 }

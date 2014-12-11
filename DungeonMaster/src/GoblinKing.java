@@ -18,7 +18,6 @@ public class GoblinKing {
 		Menu menu = new Menu();
 		menu.menuLoop();
 		
-		
 	}
-
+	
 }

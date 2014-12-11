@@ -1,0 +1,122 @@
+import java.util.*;
+import java.io.*;
+/**
+ * This is a class that represents a group of enemies in the game world. 
+ * It can load enemies from a source file, create custom enemies, and report their stats.
+ */
+public class Horde {
+	
+	//Create the game's four statistical values, along with the entity's level scaler.
+	//Also create a boolean flag to mark if the given enemies were level-scaled or not.
+	private String name;
+	private int strength;
+	private int speed;
+	private int wit;
+	private int will;
+	private int health;
+	private int scaleLevel;
+	private int finalLevel;
+	private int levelDiff;
+	private int level;
+	private int size;
+	private int AI;
+	private boolean upped = false;
+	
+	/**
+	 * Constructor for custom enemy hordes that don't exist already. 
+	 * It's also used by the massLoad method of the Creator menu.
+	 * @param initName
+	 * @param initStrength
+	 * @param initSpeed
+	 * @param initWit
+	 * @param initWill
+	 * @param initScale
+	 * The above parameters parallel the variables defined above, and represent the statistics of the enemy type.
+	 * Since this Constructor is for creating custom enemies, should the need arise, it asks for every possible parameter.
+	 */
+	public Horde (String initName, int initStrength, int initSpeed, int initWit, int initWill, int initScale) {
+		
+		//Bind the given values to variables.
+		this.name = initName;
+		this.strength = initStrength;
+		this.speed = initSpeed;
+		this.wit = initWit;
+		this.will = initWill;
+		this.health = (this.will * 6);
+		this.scaleLevel = initScale;
+		this.level = initScale;
+		this.size = 0;
+		
+	}
+	
+	/**
+	 * Constructor for enemies pulled from the input file, generally standard versions of a common entity.
+	 * @param mobName		The name of the enemy you're looking for; whatever you want to make.
+	 * @param finalLevel	The level you want this instance of the enemy to be (which must be equal to or higher than its level scale).
+	 * @throws FileNotFoundException 
+	 */
+	public Horde (String mobName, int userLevel) throws FileNotFoundException {
+		
+		//Boolean flag to mark when the correct data has been found.
+		boolean gotIt = false;
+		this.finalLevel = userLevel;
+		
+		//Find the information on the type of enemy the user wants.
+		Scanner mobFind = new Scanner(new File("src/input.txt"));
+		while (mobFind.hasNext() && !gotIt) {
+			if (mobFind.next().equals(mobName)) {
+				//This is what the user was looking for; bind the information to this object.
+				this.name = mobName;
+				this.strength = mobFind.nextInt();
+				this.speed = mobFind.nextInt();
+				this.wit = mobFind.nextInt();
+				this.will = mobFind.nextInt();
+				this.scaleLevel = mobFind.nextInt();
+				gotIt = true;
+				this.health = (will * 6);
+			} else {
+				//Not what the user was looking for; skip six tokens to get to the next name.
+				mobFind.nextInt();
+				mobFind.nextInt();
+				mobFind.nextInt();
+				mobFind.nextInt();
+				mobFind.nextInt();
+				mobFind.nextInt();
+			}
+		}
+		mobFind.close();
+		
+		//Scale the enemy type up to the desired level, if applicable.
+		if (finalLevel > scaleLevel) {
+			//In this case, the desired level is higher than the level scale, so the enemy's stats need to be scaled up.
+			//In this game, you get four stat points per level, so this code adds one to each of the four stats, to approximate leveling up.
+			this.levelDiff = finalLevel - scaleLevel;
+			for (int i = 0; i < levelDiff; i++) {
+				this.strength++;
+				this.speed++;
+				this.wit++;
+				this.will++;
+				this.level = finalLevel;
+				this.upped = true;
+				this.health = (will * 6);
+			}
+		}
+	}
+	
+	/**
+	 * This is a method that reports a given enemy's stats to the user, in case they are needed for reference.
+	 */
+	public void valueReport () {
+		
+		//Send the user this entity's statistical values, detecting if the enemy's level was scaled.
+		System.out.println("Stat values for " + name + ": ");
+		if (upped) {
+			System.out.println("Level (scaled from" + scaleLevel + "): " + level + ".");
+		} else {
+			System.out.println("Level: " + level + ".");
+		}
+		System.out.println("Strength: " + strength + ", Speed: " + speed + ", Wit: " + wit + ", Will: " + will + ".");
+		
+	}
+	
+}

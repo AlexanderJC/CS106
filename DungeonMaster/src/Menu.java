@@ -5,7 +5,7 @@ import java.util.*;
  */
 public class Menu {
 	
-	//Initialize an ArrayList to store all enemies created.
+	//Initialize an ArrayList to store all hordes created.
 	public ArrayList<Horde> entities = new ArrayList<Horde>();
 	
 	/**
@@ -18,36 +18,34 @@ public class Menu {
 		
 		//Establish the variable that will keep track of the user's choice. Also establish a Scanner to read the user's choice.
 		int choice = 0;
-		System.out.println("Welcome to the GoblinKing enemy-management system.");
+		System.out.println("~GoblinKing Enemy-Horde-Management System~");
 		
 		//Launch the Creator and Combat menus.
 		Creator creator = new Creator();
 		Combat combat = new Combat();
 		
 		//Launch the "menu" by enclosing the user in a do-while loop.
+		Scanner console = new Scanner(System.in);
 		do {
-			System.out.println("Choose an action: \n 1: Create enemies. \n 2: Engage combat. \n 3: Query a list of recorded enemies. \n 4: Quit.");
+			System.out.println("Choose an action: \n 1: Create hordes. \n 2: Engage combat. \n 3: Query a list of recorded hordes. \n 4: Quit.");
 			choice = 0;
-			Scanner choicer = new Scanner(System.in);
-			choice = choicer.nextInt();
+			choice = console.nextInt();
 			if (choice == 1) {
-				choicer.close();
-				creator.creatorLoop(entities);
+				creator.creatorLoop(console, entities);
 			}
 			if (choice == 2) {
-				choicer.close();
-				combat.combatLoop(entities);
+				combat.combatLoop(console, entities);
 			}
 			if (choice == 3) {
-				choicer.close();
-				System.out.println("Current recorded enemies: \n----------");
+				System.out.println("Current recorded hordes: \n----------");
 				for (Horde e : entities) {
 					e.valueReport();
 					System.out.println("----------");
 				}
 			}
 		} while (choice != 4);
+		console.close();
 		
 	}
-
+	
 }
