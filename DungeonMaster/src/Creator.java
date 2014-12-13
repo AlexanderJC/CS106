@@ -15,8 +15,7 @@ public class Creator {
 	 */
 	public int creatorLoop(Scanner console, HashSet<Horde> entities) throws FileNotFoundException {
 
-		// Let the user know that they're in the creation menu now, and launch a
-		// Scanner so they can navigate.
+		// Let the user know that they're in the creation menu now, and launch a Scanner so they can navigate.
 		System.out.println("Entered Creator. \n Choose an action: \n 1 - Initialize an enemy type from the archives. \n 2 - Initialize a custom enemy type. \n 3 - Initialize a group of enemy types from a load file. \n 4 - Go back.");
 		int selection = console.nextInt();
 
@@ -36,10 +35,12 @@ public class Creator {
 			return 9;
 
 		} else if (selection == 3) {
+			//Launch the method to add a group of items all at once.
 			Creator.massHordes(console, entities);
 			return 9;
 
 		} else {
+			//User wants to go back to the main menu.
 			return 9;
 		}
 		

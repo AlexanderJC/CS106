@@ -18,7 +18,7 @@ public class Menu {
 		
 		//Establish the variable that will keep track of the user's choice. Also establish a Scanner to read the user's choice.
 		int choice = 0;
-		System.out.println("~GoblinKing Enemy-Horde-Management System~");
+		System.out.println("~GoblinKing Enemy-Horde-Management System~ \n");
 		
 		//Launch the Creator and Combat menus.
 		Creator creator = new Creator();
@@ -27,16 +27,19 @@ public class Menu {
 		//Launch the "menu" by enclosing the user in a do-while loop.
 		Scanner console = new Scanner(System.in);
 		do {
-			System.out.println("Choose an action: \n 1 - Create hordes. \n 2 - Engage combat. \n 3 - Query a list of recorded hordes. \n 4 - Clear all recorded hordes. \n 5 - Quit.");
+			System.out.println("Choose an action: \n 1 - Create or load enemy types for hordes. \n 2 - Prepare for combat. \n 3 - Query a list of recorded horde types. \n 4 - Clear recorded horde types. \n 5 - Quit.");
 			choice = 0;
 			choice = console.nextInt();
 			if (choice == 1) {
+				//Go to the Creator.
 				creator.creatorLoop(console, entities);
 			}
 			if (choice == 2) {
+				//Go to Combat.
 				combat.combatLoop(console, entities);
 			}
 			if (choice == 3) {
+				//Tell the user what types of enemies they have loaded into the program for use.
 				System.out.println("Current recorded hordes: \n----------");
 				for (Horde e : entities) {
 					e.valueReport();
@@ -44,13 +47,14 @@ public class Menu {
 				}
 			}
 			if (choice ==4) {
+				//Wipe the entities array clean. Maybe the user added too many types of enemies and it's a lot to read through.
 				entities.clear();
 				System.out.println("Record cleared.");
 			}
 		} while (choice != 5);
 		
 		//Quit.
-		System.out.println("~GoblinKing Enemy-Horde-Management System~");
+		System.out.println("\n ~GoblinKing Enemy-Horde-Management System~");
 		console.close();
 		
 	}

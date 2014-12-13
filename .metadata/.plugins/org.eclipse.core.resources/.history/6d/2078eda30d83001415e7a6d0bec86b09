@@ -1,0 +1,208 @@
+import java.util.*;
+/**
+ * This class is the Combat menu. It represents an instance of combat within the game.
+ * It rolls initiative, keeps track of health, and allows for the addition and subtraction of enemies.
+ */
+public class Combat {
+	
+	//Establish a list to add selected hordes to. This is used to shuffle the hordes and create an initiative order.
+	private ArrayList<Horde> forces = new ArrayList<Horde>();
+	private Queue<Horde> initiative = new LinkedList<Horde>();
+	
+	/**
+	 * 
+	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
+	 */
+	public int combatLoop (Scanner console, HashSet<Horde> entities) {
+		
+		//Establish a variable to record the number of players in this combat.
+		forces.clear();
+		initiative.clear();
+		
+		//Ask the user to indicate the number of players involved in this combat.
+		System.out.println("Entered Combat.");
+		
+		//Show the user what types of hordes they can put in this combat.
+		System.out.println(" Current recorded hordes: \n----------");
+		for (Horde e : entities) {
+			e.valueReport();
+			System.out.println("----------");
+		}
+		
+		//Run the horde-adding menu.
+		hordeAdd(console, entities);
+		
+		//Shuffle the forces ArrayList and add its elements to the Queue, initiative. This represents the turn order for combat.
+		int combatantsCount = 0;
+		boolean isAlive = true;
+		boolean decreaseCount = false;
+		Collections.shuffle(forces);
+		for (Horde a : forces) {
+			initiative.add(a);
+			combatantsCount++;
+		}
+		
+		//Begin combat proper by looping through the initiative Queue over and over until all the enemies are dead.
+		do {
+			//Combat starts with the players, so tell the user to have the players proceed through their own initiative order first.
+			System.out.println("*** Players' turn. Enter anything to continue when ready.");
+			console.next();
+			
+			//Begin the large enemy combat loop.
+			System.out.println("\n Enemy actions begin. \n ");
+			for (int i = 0; i < combatantsCount; i++) {
+				int action = 0;
+				Horde currentHorde = initiative.peek();
+				String currentName = currentHorde.getName();
+				int thisHordeSize = currentHorde.getSize();
+				System.out.println("*** " + currentName + " horde numbering " + thisHordeSize + " attempts to attack!");
+				System.out.println(" Individuals in this horde currently have " + currentHorde.getHealth() + " health.");
+				do {
+					System.out.println("Choose an action for this " + currentName + " horde: \n 1 - Attack and roll for damage. \n 2 - Sustain damage. \n 3 - Remove one or more members of this horde from combat. \n 4 - Increase or decrease this horde's Attack Interference index. \n 5 - Finish this horde's turn.");
+					action = console.nextInt();
+					if (action == 1) {
+						fighting(console, currentHorde);
+					}
+					if (action == 2) {
+						System.out.println("How much damage do the individuals in this horde sustain?");
+						currentHorde.takeDamage(console.nextInt());
+						int deathCheck = currentHorde.getHealth();
+						if (deathCheck < 1) {
+							System.out.println("Horde has sustained lethal damage! \n This " + currentName + " horde of " + thisHordeSize + " individuals has been defeated.");
+							isAlive = false;
+							action = 5;
+						} else {
+							System.out.println("Individuals in this horde now have " + currentHorde.getHealth() + " health.");
+						}
+					}
+					if (action == 3) {
+						System.out.println("How many of the " + thisHordeSize + " individuals in this horde do you want to remove?");
+						int losses = currentHorde.getSize();
+						losses -= console.nextInt();
+						currentHorde.setSize(losses);
+						thisHordeSize = currentHorde.getSize();
+						System.out.println(" This horde now contains " + thisHordeSize + " individuals.");
+						if (thisHordeSize <= 0) {
+							System.out.println(" Removed from combat.");
+							isAlive = false;
+							action = 5;
+						}
+					}
+					if (action == 4) {
+						System.out.println("Current Attack Interference index for this horde is " + currentHorde.getAI() + ".");
+						System.out.println(" Enter the new Attack Interference index: ");
+						currentHorde.setAI(console.nextInt());
+						System.out.println(" Changed.");
+					}
+				} while (action != 5);
+				//Return this horde to the back of the initiative order if it didn't die, or get obliterated by the user or something.
+				initiative.remove();
+				if (isAlive){
+					initiative.add(currentHorde);
+				} else {
+					decreaseCount = true;
+					isAlive = true;
+				}
+			}
+			
+			if (decreaseCount) {
+				combatantsCount--;
+				decreaseCount = false;
+			}
+		//End the combat loop when the initiative Queue is empty (when all the enemies are dead).
+		} while (!initiative.isEmpty());
+		
+		//Combat ended; return to main menu.
+		System.out.println("\n ~Combat Concluded~ \n");
+		return 9;
+		
+	}
+	
+	public void hordeAdd (Scanner console, HashSet<Horde> entities) {
+		
+		//Establish a choice marker, and a boolean flag for use in the loop.
+		int hordeAction = 0;
+		boolean added = false;
+		System.out.println("Add one or more hordes to this combat.");
+		
+		//Allow the user to add hordes, setting their size and adding them to the forces ArrayList.
+		do {
+			System.out.println("Choose an action: \n 1 - Add a horde. \n 2 - Finish adding hordes and roll for initiative.");
+			added = false;
+			hordeAction = 0;
+			hordeAction = console.nextInt();
+			if (hordeAction == 1) {
+				System.out.println("Enter the name of the desired enemy type: ");
+				String desiredType = console.next();
+				//Search the list of entities for the user's choice.
+				for (Horde h : entities) {
+					//If the choice is found, add it to the list. 
+					//Because the entities list is a Set, this code won't add duplicates; the user can choose to add a horde again to do that.
+					if (h.getName().equals(desiredType)) {
+						forces.add(h);
+						System.out.println("Enter the desired number of individuals in the horde: ");
+						h.setSize(console.nextInt());
+						added = true;
+					}
+				}
+				if (added) {
+					System.out.println("Horde added to combat.");
+				} else {
+					System.out.println("The desired horde type is not specified. Choose another type.");
+				}
+			}
+		} while (hordeAction != 2);
+		
+	}
+	
+	public void fighting (Scanner console, Horde currentHorde) {
+		
+		//Create an array to represent a d6 die, an array to represent a d20 die, and an ArrayList to contain the players' Dodge values.
+		ArrayList<Integer> sixSide = new ArrayList<Integer>();
+		for (int s = 1; s < 7; s++) {
+			sixSide.add(s);
+		}
+		ArrayList<Integer> twentySide = new ArrayList<Integer>();
+		for (int t = 1; t < 21; t++) {
+			twentySide.add(t);
+		}
+		ArrayList<Player> dodgers = new ArrayList<Player>();
+		
+		//Ask the user to enter damage parameters.
+		System.out.println("Determine damage parameters for this horde.");
+		System.out.println(" How many six-sided dice should this horde roll for these attacks?");
+		int dieNum = console.nextInt();
+		System.out.println(" How many targets does this horde have?");
+		int targetNum = console.nextInt();
+		System.out.println(" Enter Name and then enter Dodge value rolled for each player: ");
+		for (int i = 0; i < targetNum; i++) {
+			dodgers.add(new Player(console.next(), console.nextInt()));
+			System.out.println(" Added.");
+		}
+		
+		//Generate damage values based on the parameters.
+		System.out.println("Damage from " + currentHorde.getSize() + " individuals: ");
+		for (int i = 0; i < currentHorde.getSize(); i++) {
+			Collections.shuffle(dodgers);
+			Player currentVictim = dodgers.get(0);
+			int currentDodge = currentVictim.getDodge();
+			Collections.shuffle(twentySide);
+			int currentHit = twentySide.get(0);
+			currentHit += currentHorde.getSpe();
+			currentHit -= currentHorde.getAI();
+			if (currentHit > currentDodge) {
+				int currentDamage = 0;
+				for (int j = 0; j < dieNum; j++) {
+					Collections.shuffle(sixSide);
+					currentDamage += sixSide.get(0);
+				}
+				currentDamage += currentHorde.getStr();
+				currentDamage -= currentHorde.getAI();
+				System.out.println("* " + currentHorde.getName() + " attacks " + currentVictim.getName() + " for " + currentDamage + " damage!");
+			} else {
+				System.out.println("* " + currentHorde.getName() + " misses " + currentVictim.getName() + "!");
+			}
+		}
+	}
+	
+}

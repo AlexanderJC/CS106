@@ -1,0 +1,122 @@
+import java.util.*;
+/**
+ * This class is the Combat menu. It represents an instance of combat within the game.
+ * It rolls initiative, keeps track of health, and allows for the addition and subtraction of enemies.
+ */
+public class Combat {
+	
+	//Establish a list to add selected hordes to. This is used to shuffle the hordes and create an initiative order.
+	private ArrayList<Horde> forces = new ArrayList<Horde>();
+	private Queue<Horde> initiative = new LinkedList<Horde>();
+	
+	/**
+	 * 
+	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
+	 */
+	public int combatLoop (Scanner console, HashSet<Horde> entities) {
+		
+		//Establish a variable to record the number of players in this combat.
+		forces.clear();
+		initiative.clear();
+		int players;
+		
+		//Ask the user to indicate the number of players involved in this combat.
+		System.out.println("Entered Combat. \n Enter number of player characters in combat: ");
+		players = console.nextInt();
+		
+		//Show the user what types of hordes they can put in this combat.
+		System.out.println("Current recorded hordes: \n----------");
+		for (Horde e : entities) {
+			e.valueReport();
+			System.out.println("----------");
+		}
+		
+		//Run the horde-adding menu.
+		hordeAdd(console, entities);
+		
+		//Shuffle the forces ArrayList and add its elements to the Queue, initiative. This represents the turn order for combat.
+		int forceCount = 0;
+		Collections.shuffle(forces);
+		for (Horde a : forces) {
+			initiative.add(a);
+			forceCount++;
+		}
+		
+		//Begin combat proper by looping through the initiative Queue over and over until all the enemies are dead.
+		do {
+			//Combat starts with the players, so tell the user to have the players proceed through their own initiative order first.
+			System.out.println("*** Players' turn. Enter anything to continue when ready.");
+			console.next();
+			
+			//Begin the large enemy combat loop.
+			System.out.println("Enemy actions begin.");
+			for (int i = 0; i < forceCount; i++) {
+				Horde currentHorde = initiative.remove();
+				String currentName = currentHorde.getName();
+				int thisHordeSize = currentHorde.getSize();
+				int action = 0;
+				System.out.println("*** " + currentName + " horde numbering " + thisHordeSize + " attempts to attack!");
+				System.out.println(" Individuals in this horde currently have " + currentHorde.getHealth() + " health.");
+				do {
+					System.out.println("Choosen an action for this " + currentName + " horde: \n 1 - Attack and roll for damage. \n 2 - Sustain damage. \n 3 - Remove from combat. \n 4 - Finish this horde's turn.");
+					action = console.nextInt();
+					if (action == 1) {
+						//TODO: attack!
+					}
+					if (action == 2) {
+						//TODO: hurt 'em!
+					}
+					if (action == 3) {
+						//TODO: take the horde out of this combat.
+					}
+				} while (action != 4);
+			}
+			
+		} while (!initiative.isEmpty() || players != 0);
+		
+		//Combat ended; return to main menu.
+		System.out.println("Combat concluded.");
+		return 9;
+		
+	}
+	
+	public void hordeAdd (Scanner console, HashSet<Horde> entities) {
+		
+		//Establish a choice marker, and a boolean flag for use in the loop.
+		int hordeAction = 0;
+		boolean added = false;
+		System.out.println("Add one or more hordes to this combat.");
+		
+		//Allow the user to add hordes, setting their size and adding them to the forces ArrayList.
+		do {
+			System.out.println("Choose an action: \n 1 - Add a horde. \n 2 - Finish adding hordes.");
+			added = false;
+			hordeAction = 0;
+			hordeAction = console.nextInt();
+			if (hordeAction == 1) {
+				System.out.println("Enter the name of the desired enemy type: ");
+				String desiredType = console.next();
+				//Search the list of entities for the user's choice.
+				for (Horde h : entities) {
+					//If the choice is found, add it to the list. 
+					//Because the entities list is a Set, this code won't add duplicates; the user can choose to add a horde again to do that.
+					if (h.getName().equals(desiredType)) {
+						forces.add(h);
+						System.out.println("Enter the desired number of individuals in the horde: ");
+						h.setSize(console.nextInt());
+						System.out.println("Enter the desired initial Attack Interference index for the horde: ");
+						h.setAI(console.nextInt());
+						added = true;
+					}
+				}
+				if (added) {
+					System.out.println("Horde added to combat.");
+				} else {
+					System.out.println("The desired horde type is not specified. Choose another type.");
+				}
+			}
+		} while (hordeAction != 2);
+		
+	}
+	
+}

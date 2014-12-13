@@ -170,8 +170,16 @@ public class Horde {
 	 * Sort of a setter for health; used to damage the horde.
 	 * @param damage	The amount of damage to deal to all members of the horde.
 	 */
-	public void dealDamage (int damage) {
+	public void takeDamage (int damage) {
 		this.health -= damage;
+	}
+	
+	public int getStr () {
+		return this.strength;
+	}
+	
+	public int getSpe () {
+		return this.speed;
 	}
 	
 }

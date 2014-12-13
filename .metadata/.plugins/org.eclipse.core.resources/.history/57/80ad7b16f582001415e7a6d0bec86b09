@@ -1,0 +1,77 @@
+import java.util.*;
+/**
+ * This class is the Combat menu. It represents an instance of combat within the game.
+ * It rolls initiative, keeps track of health, and allows for the addition and subtraction of enemies.
+ */
+public class Combat {
+	
+	//Establish a list to add selected hordes to. This is used to shuffle the hordes and create an initiative order.
+	private ArrayList<Horde> forces = new ArrayList<Horde>();
+	
+	/**
+	 * 
+	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
+	 */
+	public int combatLoop (Scanner console, HashSet<Horde> entities) {
+		
+		//Establish a variable to record the number of players in this combat.
+		forces.clear();
+		int players;
+		
+		//Ask the user to indicate the number of players involved in this combat.
+		System.out.println("Entered Combat. \n Enter number of player characters in combat: ");
+		players = console.nextInt();
+		
+		//Show the user what types of hordes they can put in this combat.
+		System.out.println("Current recorded hordes: \n----------");
+		for (Horde e : entities) {
+			e.valueReport();
+			System.out.println("----------");
+		}
+		
+		//Launch the horde-adding menu.
+		hordeAdd(console, entities);
+		return 9;
+		
+	}
+	
+	public void hordeAdd (Scanner console, HashSet<Horde> entities) {
+		
+		//Establish a choice marker, and a boolean flag for use in the loop.
+		int hordeAction = 0;
+		boolean added = false;
+		System.out.println("Add one or more hordes to this combat.");
+		
+		//Allow the user to add hordes, setting their size and adding them to 
+		do {
+			System.out.println("Choose an action: \n 1 - Add a horde. \n 2 - Finish adding hordes.");
+			added = false;
+			hordeAction = 0;
+			hordeAction = console.nextInt();
+			if (hordeAction == 1) {
+				System.out.println("Enter the name of the desired enemy type: ");
+				String desiredType = console.next();
+				//Search the list of entities for the user's choice.
+				for (Horde h : entities) {
+					//If the choice is found, add it to the list. 
+					//Because the entities list is a Set, this code won't add duplicates; the user can choose to add a horde again to do that.
+					if (h.getName().equals(desiredType)) {
+						forces.add(h);
+						System.out.println("Enter the desired number of individuals in the horde: ");
+						h.setSize(console.nextInt());
+						System.out.println("Enter the desired initial Attack Interference index for the horde: ");
+						h.setAI(console.nextInt());
+						added = true;
+					}
+				}
+				if (added) {
+					System.out.println("Horde added to combat.");
+				} else {
+					System.out.println("The desired horde type is not specified. Choose another type.");
+				}
+			}
+		} while (hordeAction != 2);
+		
+	}
+	
+}
