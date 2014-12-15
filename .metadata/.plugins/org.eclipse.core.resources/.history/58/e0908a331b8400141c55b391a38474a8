@@ -10,9 +10,7 @@ public class Combat {
 	private Queue<Horde> initiative = new LinkedList<Horde>();
 	
 	/**
-	 * The main Combat loop.
-	 * @param console		The Scanner used to read user input in this program.
-	 * @param entities		The list of enemy type that the user can use to make hordes.
+	 * 
 	 * @return The menu returns a meaningless integer so that it doesn't pile itself up on the stack.
 	 */
 	public int combatLoop (Scanner console, HashSet<Horde> entities) {
@@ -38,7 +36,7 @@ public class Combat {
 		//Shuffle the forces ArrayList and add its elements to the Queue, initiative. This represents the turn order for combat.
 		int combatantsCount = 0;
 		boolean isAlive = true;
-		int decreaseCount = 0;
+		boolean decreaseCount = false;
 		Collections.shuffle(forces);
 		for (Horde a : forces) {
 			initiative.add(a);
@@ -65,11 +63,9 @@ public class Combat {
 					System.out.println("Choose an action for this " + currentName + " horde: \n 1 - Attack and roll for damage. \n 2 - Sustain damage. \n 3 - Remove one or more members of this horde from combat. \n 4 - Increase or decrease this horde's Attack Interference index. \n 5 - Finish this horde's turn.");
 					action = console.nextInt();
 					if (action == 1) {
-						//Attack!  Go to the fighting menu to roll for damage.
 						fighting(console, currentHorde);
 					}
 					if (action == 2) {
-						//Ask the user how much to damage the horde's members, and tell the user if the horde died from that damage.
 						System.out.println("How much damage do the individuals in this horde sustain?");
 						currentHorde.takeDamage(console.nextInt());
 						int deathCheck = currentHorde.getHealth();
@@ -77,13 +73,11 @@ public class Combat {
 							System.out.println("Horde has sustained lethal damage! \n This " + currentName + " horde of " + thisHordeSize + " individuals has been defeated.");
 							isAlive = false;
 							action = 5;
-							decreaseCount++;
 						} else {
 							System.out.println("Individuals in this horde now have " + currentHorde.getHealth() + " health.");
 						}
 					}
 					if (action == 3) {
-						//Allow the user to just remove some or all of the enemies in the horde.
 						System.out.println("How many of the " + thisHordeSize + " individuals in this horde do you want to remove?");
 						int losses = currentHorde.getSize();
 						losses -= console.nextInt();
@@ -94,11 +88,9 @@ public class Combat {
 							System.out.println(" Removed from combat.");
 							isAlive = false;
 							action = 5;
-							decreaseCount++;
 						}
 					}
 					if (action == 4) {
-						//If the horde is in some way inhibited from attacking, the user can use this option to inhibit the horde's chance to hit and damage using the Attack Interference index.
 						System.out.println("Current Attack Interference index for this horde is " + currentHorde.getAI() + ".");
 						System.out.println(" Enter the new Attack Interference index: ");
 						currentHorde.setAI(console.nextInt());
@@ -110,16 +102,14 @@ public class Combat {
 				if (isAlive){
 					initiative.add(currentHorde);
 				} else {
+					decreaseCount = true;
 					isAlive = true;
 				}
 			}
 			
-			//If a horde died this combat, reduce the number of times that the program cycles through the enemy menu.
-			if (decreaseCount > 0) {
-				for (int i = 0; i < decreaseCount; i++) {
-					combatantsCount--;
-				}
-				decreaseCount = 0;
+			if (decreaseCount) {
+				combatantsCount--;
+				decreaseCount = false;
 			}
 		//End the combat loop when the initiative Queue is empty (when all the enemies are dead).
 		} while (!initiative.isEmpty());
@@ -130,11 +120,6 @@ public class Combat {
 		
 	}
 	
-	/**
-	 * This is a sub-menu used to turn enemy types into hordes of various numbers.
-	 * @param console		The Scanner used to read user input in this program.
-	 * @param entities		The list of enemy type that the user can use to make hordes.
-	 */
 	public void hordeAdd (Scanner console, HashSet<Horde> entities) {
 		
 		//Establish a choice marker, and a boolean flag for use in the loop.
@@ -172,11 +157,6 @@ public class Combat {
 		
 	}
 	
-	/**
-	 * This section of the Combat menu calculates damage for a given horde against any chosen number of players.
-	 * @param console		The Scanner used to read user input in this program.
-	 * @param currentHorde	The current horde of enemies that is attacking.
-	 */
 	public void fighting (Scanner console, Horde currentHorde) {
 		
 		//Create an array to represent a d6 die, an array to represent a d20 die, and an ArrayList to contain the players' Dodge values.
@@ -205,7 +185,6 @@ public class Combat {
 		//Generate damage values based on the parameters.
 		System.out.println("Damage from " + currentHorde.getSize() + " individuals: ");
 		for (int i = 0; i < currentHorde.getSize(); i++) {
-			//Have this member of the horde pick a target player at random, and compare Dodge values.
 			Collections.shuffle(dodgers);
 			Player currentVictim = dodgers.get(0);
 			int currentDodge = currentVictim.getDodge();
@@ -213,7 +192,6 @@ public class Combat {
 			int currentHit = twentySide.get(0);
 			currentHit += currentHorde.getSpe();
 			currentHit -= currentHorde.getAI();
-			//See if this member of the horde managed to hit the player they chose to attack, and if they did, calculate damage.
 			if (currentHit > currentDodge) {
 				int currentDamage = 0;
 				for (int j = 0; j < dieNum; j++) {

@@ -5,7 +5,7 @@ import java.util.*;
  */
 public class Menu {
 	
-	//Initialize a HashSet to store all types of enemies recorded for use in a session.
+	//Initialize a HashSet to store all types of hordes recorded for use in a session.
 	public HashSet<Horde> entities = new HashSet<Horde>();
 	
 	/**

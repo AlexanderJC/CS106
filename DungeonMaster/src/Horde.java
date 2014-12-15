@@ -66,7 +66,7 @@ public class Horde {
 		//Find the information on the type of enemy the user wants.
 		Scanner mobFind = new Scanner(new File("src/input.txt"));
 		while (mobFind.hasNext() && !gotIt) {
-			if (mobFind.next().equals(mobName)) {
+			if (mobFind.next().equalsIgnoreCase(mobName)) {
 				//This is what the user was looking for; bind the information to this object.
 				this.name = mobName;
 				this.strength = mobFind.nextInt();
@@ -174,10 +174,18 @@ public class Horde {
 		this.health -= damage;
 	}
 	
+	/**
+	 * Getter for Strength stat, used to calculate damage from basic enemy attacks.
+	 * @return	The enemy type's strength.
+	 */
 	public int getStr () {
 		return this.strength;
 	}
 	
+	/**
+	 * Getter for Speed stat, used to calculate whether or not the enemies hit the players.
+	 * @return	The enemy type's speed.
+	 */
 	public int getSpe () {
 		return this.speed;
 	}

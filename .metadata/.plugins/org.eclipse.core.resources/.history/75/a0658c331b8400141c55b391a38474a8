@@ -1,35 +1,42 @@
 import java.util.*;
 import java.io.*;
 /**
- * This is a class that represents a single enemy in the game world. It can load enemies from a source file, create custom enemies, and report their stats.
+ * This is a class that represents a group of enemies in the game world. 
+ * It can load enemies from a source file, create custom enemies, and report their stats.
  */
-public class Enemy {
+public class Horde {
 	
-	//Create the game's four statistical values, along with the entity's armor class and level scaler.
-	//Also create a boolean flag to mark if the given enemy was level-scaled or not.
+	//Create the game's four statistical values, along with the entity's level scaler.
+	//Also create a boolean flag to mark if the given enemies were level-scaled or not.
 	private String name;
 	private int strength;
 	private int speed;
 	private int wit;
 	private int will;
-	private int armorClass;
+	private int health;
 	private int scaleLevel;
+	private int finalLevel;
+	private int levelDiff;
 	private int level;
 	private boolean upped = false;
+	//Create variables for the size of the horde (in individuals) and the horde's Attack Interference value.
+	//These values are dealt with in the Combat class.
+	private int size;
+	private int AI;
 	
 	/**
-	 * Constructor for custom enemies that don't exist already.
+	 * Constructor for custom enemy hordes that don't exist already. 
+	 * It's also used by the massLoad method of the Creator menu.
 	 * @param initName
 	 * @param initStrength
 	 * @param initSpeed
 	 * @param initWit
 	 * @param initWill
-	 * @param initAC
 	 * @param initScale
-	 * The above parameters parallel the variables defined above, and represent the statistics of the enemy.
+	 * The above parameters parallel the variables defined above, and represent the statistics of the enemy type.
 	 * Since this Constructor is for creating custom enemies, should the need arise, it asks for every possible parameter.
 	 */
-	public Enemy (String initName, int initStrength, int initSpeed, int initWit, int initWill, int initAC, int initScale) {
+	public Horde (String initName, int initStrength, int initSpeed, int initWit, int initWill, int initScale) {
 		
 		//Bind the given values to variables.
 		this.name = initName;
@@ -37,9 +44,10 @@ public class Enemy {
 		this.speed = initSpeed;
 		this.wit = initWit;
 		this.will = initWill;
-		this.armorClass = initAC;
+		this.health = (this.will * 6);
 		this.scaleLevel = initScale;
 		this.level = initScale;
+		this.size = 0;
 		
 	}
 	
@@ -49,14 +57,14 @@ public class Enemy {
 	 * @param finalLevel	The level you want this instance of the enemy to be (which must be equal to or higher than its level scale).
 	 * @throws FileNotFoundException 
 	 */
-	public Enemy (String mobName, int finalLevel) throws FileNotFoundException {
+	public Horde (String mobName, int userLevel) throws FileNotFoundException {
 		
-		//Test boolean flag.
+		//Boolean flag to mark when the correct data has been found.
 		boolean gotIt = false;
+		this.finalLevel = userLevel;
 		
 		//Find the information on the type of enemy the user wants.
-		File file = new File("C:\Users\Xander\Documents\GitHub\CS106\DungeonMaster\src");
-		Scanner mobFind = new Scanner(file);
+		Scanner mobFind = new Scanner(new File("src/input.txt"));
 		while (mobFind.hasNext() && !gotIt) {
 			if (mobFind.next().equals(mobName)) {
 				//This is what the user was looking for; bind the information to this object.
@@ -65,9 +73,10 @@ public class Enemy {
 				this.speed = mobFind.nextInt();
 				this.wit = mobFind.nextInt();
 				this.will = mobFind.nextInt();
-				this.armorClass = mobFind.nextInt();
+				mobFind.nextInt();
 				this.scaleLevel = mobFind.nextInt();
 				gotIt = true;
+				this.health = (will * 6);
 			} else {
 				//Not what the user was looking for; skip six tokens to get to the next name.
 				mobFind.nextInt();
@@ -80,12 +89,11 @@ public class Enemy {
 		}
 		mobFind.close();
 		
-		//Scale the enemy up to the desired level, if applicable.
-		int levelDiff = 0;
+		//Scale the enemy type up to the desired level, if applicable.
 		if (finalLevel > scaleLevel) {
 			//In this case, the desired level is higher than the level scale, so the enemy's stats need to be scaled up.
 			//In this game, you get four stat points per level, so this code adds one to each of the four stats, to approximate leveling up.
-			levelDiff = finalLevel - scaleLevel;
+			this.levelDiff = finalLevel - scaleLevel;
 			for (int i = 0; i < levelDiff; i++) {
 				this.strength++;
 				this.speed++;
@@ -93,6 +101,7 @@ public class Enemy {
 				this.will++;
 				this.level = finalLevel;
 				this.upped = true;
+				this.health = (will * 6);
 			}
 		}
 	}
@@ -105,12 +114,72 @@ public class Enemy {
 		//Send the user this entity's statistical values, detecting if the enemy's level was scaled.
 		System.out.println("Stat values for " + name + ": ");
 		if (upped) {
-			System.out.println("Level (scaled from" + scaleLevel + "): " + level + ".");
+			System.out.println("Level (scaled from: " + scaleLevel + "): " + level + ".");
 		} else {
 			System.out.println("Level: " + level + ".");
 		}
 		System.out.println("Strength: " + strength + ", Speed: " + speed + ", Wit: " + wit + ", Will: " + will + ".");
-		System.out.println("Armor Class: " + armorClass + ".");
 		
 	}
+	
+	/**
+	 * Getter for the name of the enemy type, used when creating hordes for Combat.
+	 */
+	public String getName () {
+		return this.name;
+	}
+	
+	/**
+	 * Getter for size.
+	 */
+	public int getSize () {
+		return this.size;
+	}
+	
+	/**
+	 * Setter for the size of the horde.
+	 * @param newSize	The desired new size for the horde.
+	 */
+	public void setSize (int newSize) {
+		this.size = newSize;
+	}
+	
+	/**
+	 * Getter for Attack Interference index.
+	 */
+	public int getAI () {
+		return this.AI;
+	}
+	
+	/**
+	 * Setter for the Attack Interference index of the horde.
+	 * @param newAI	The desired new Attack Interference index.
+	 */
+	public void setAI (int newAI) {
+		this.AI = newAI;
+	}
+	
+	/**
+	 * Getter for health.
+	 */
+	public int getHealth () {
+		return this.health;
+	}
+	
+	/**
+	 * Sort of a setter for health; used to damage the horde.
+	 * @param damage	The amount of damage to deal to all members of the horde.
+	 */
+	public void takeDamage (int damage) {
+		this.health -= damage;
+	}
+	
+	public int getStr () {
+		return this.strength;
+	}
+	
+	public int getSpe () {
+		return this.speed;
+	}
+	
 }
